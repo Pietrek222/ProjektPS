@@ -1,0 +1,15 @@
+% Genereacja tonów DTMF
+
+
+% częstotliwość próbkowania
+
+fs  = 4000;
+dt  = 1/fs;
+
+
+% Tony DTMF powstają z nałożenia na siebie dwóch sinusoidalnych fal dźwiękowych o częstotliwościach przypisanych danemu przyciskowi.
+% Częstotliwości te prezentuje poniższa tabela.
+
+fwier  = [697 770 852 941];
+fkol  = [1209 1336 1477];
+
