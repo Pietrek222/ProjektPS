@@ -1,2 +1,0 @@
-# ProjektPS
-projekt1
