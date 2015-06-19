@@ -1,12 +1,5 @@
 % Genereacja tonów DTMF
 
-
-% częstotliwość próbkowania
-
-fs  = 4000;
-dt  = 1/fs;
-
-
 % Tony DTMF powstają z nałożenia na siebie dwóch sinusoidalnych fal dźwiękowych o częstotliwościach przypisanych danemu przyciskowi.
 % Częstotliwości te prezentuje poniższa tabela.
 %
@@ -16,9 +9,15 @@ dt  = 1/fs;
 % 852 Hz    7       8       9
 % 941 Hz    *       0       #
 
-
 fwier  = [697 770 852 941];
 fkol  = [1209 1336 1477];
+
+% częstotliwość próbkowania
+
+fs  = 10000;
+dt  = 1/fs;
+
+
 
 fprintf('\nWitamy w programie ***Genereacji tonów DTMF*** \n');
 fprintf('\nPonizej znajduje sie tabela z mozliwymi zmiennymi do uzycia: \n');
@@ -30,33 +29,65 @@ fprintf('    * | 0 | #  \n\n');
 fprintf('Jesli bedziesz chcial zakonczyc program wpisz: > zakoncz <\n\n');
 prompt = 'Podaj zmienna: ';
 x = 'xxx';
-while strcmp(x,'zakoncz') == 0    
+
+%funkcja 'strcmp' służy do porównania stringów, jeśli stringi są takie same
+%to zwraca '1' jeśli nie to zwraca '0'
+
+  
+while strcmp(x,'zakoncz') == 0  
   x = input(prompt, 's');
+
+  %funkcja 'soundsc' przesyła dane do głośnika
+  
   switch x
-   case '1'
-   
+      case '1'
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(1)*t) + sin(2*pi*fkol(1)*t);
+    soundsc(x, fs);
    case '2'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(1)*t) + sin(2*pi*fkol(2)*t);
+    soundsc(x, fs);
    case '3'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(1)*t) + sin(2*pi*fkol(3)*t);
+    soundsc(x, fs);
    case '4'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(2)*t) + sin(2*pi*fkol(1)*t);
+    soundsc(x, fs);
    case '5'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(2)*t) + sin(2*pi*fkol(2)*t);
+    soundsc(x, fs);
    case '6'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(2)*t) + sin(2*pi*fkol(3)*t);
+    soundsc(x, fs);
    case '7'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(3)*t) + sin(2*pi*fkol(1)*t);
+    soundsc(x, fs);
    case '8'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(3)*t) + sin(2*pi*fkol(2)*t);
+    soundsc(x, fs);
    case '9'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(3)*t) + sin(2*pi*fkol(3)*t);
+    soundsc(x, fs);
    case '*'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(4)*t) + sin(2*pi*fkol(1)*t);
+    soundsc(x, fs);
    case '0'
-   
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(4)*t) + sin(2*pi*fkol(2)*t);
+    soundsc(x, fs);
    case '#'
-    
+    t = 0:dt:0.3;
+    x = sin(2*pi*fwier(4)*t) + sin(2*pi*fkol(3)*t);
+    soundsc(x, fs);
    case 'zakoncz'
     fprintf('\nZakonczyles dzialanie programu. \n');
    otherwise
